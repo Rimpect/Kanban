@@ -1,0 +1,15 @@
+{
+  "name": "kanban",
+  "private": true,
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "dev:client": "pnpm --filter @kanban/client dev",
+    "dev:server": "pnpm --filter @kanban/server dev",
+    "lint": "biome check",
+    "format": "biome format --write",
+    "lint:fix": "biome check --write"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.15"
+  }
+}
