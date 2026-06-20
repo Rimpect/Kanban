@@ -31,3 +31,7 @@ lerna-debug.log*
 
 # Dist
 dist/
+
+*.db
+*.db-journal
+*.db-wal
