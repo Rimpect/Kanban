@@ -1,11 +1,16 @@
-import './App.css';
-
+import "./App.css";
+import { useBoards } from "@entities";
 const App = () => {
+  const { data: boards, isLoading, isError } = useBoards();
+
+  if (isLoading) return <p>Загрузка</p>;
+  if (isError) return <p>Ошибка</p>;
   return (
-    <div className="content">
-      <h1>Rsbuild with React</h1>
-      <p>Start building amazing things with Rsbuild.</p>
-    </div>
+    <ul>
+      {boards?.map((b) => (
+        <li key={b.id}>{b.name}</li>
+      ))}
+    </ul>
   );
 };
 

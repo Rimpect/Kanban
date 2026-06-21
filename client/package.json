@@ -13,9 +13,12 @@
     "test:watch": "rstest --watch"
   },
   "dependencies": {
+    "@kanban/server": "workspace:^",
+    "@kanban/shared": "workspace:*",
+    "@tanstack/react-query": "^5.101.0",
+    "hono": "^4.12.25",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7",
-    "@kanban/shared": "workspace:*"
+    "react-dom": "^19.2.7"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.15",
