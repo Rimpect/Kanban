@@ -1,0 +1,33 @@
+:root {
+  --font-sans:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --fs-display: 28px;
+  --lh-display: 36px;
+  --fw-display: 600;
+  --fs-h1: 22px;
+  --lh-h1: 30px;
+  --fw-h1: 600;
+  --fs-h2: 18px;
+  --lh-h2: 26px;
+  --fw-h2: 600;
+  --fs-body: 14px;
+  --lh-body: 20px;
+  --fw-body: 400;
+  --fw-body-strong: 600;
+  --fs-caption: 12px;
+  --lh-caption: 16px;
+  --fw-caption: 400;
+  --fs-label: 12px;
+  --lh-label: 16px;
+  --fw-label: 500;
+  --type-display: var(--fw-display) var(--fs-display)/var(--lh-display)
+    var(--font-sans);
+  --type-h1: var(--fw-h1) var(--fs-h1)/var(--lh-h1) var(--font-sans);
+  --type-h2: var(--fw-h2) var(--fs-h2)/var(--lh-h2) var(--font-sans);
+  --type-body: var(--fw-body) var(--fs-body)/var(--lh-body) var(--font-sans);
+  --type-caption: var(--fw-caption) var(--fs-caption)/var(--lh-caption)
+    var(--font-sans);
+  --type-label: var(--fw-label) var(--fs-label)/var(--lh-label) var(--font-sans);
+}

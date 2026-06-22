@@ -1,0 +1,78 @@
+:root {
+  /* primitives */
+  --color-white: #ffffff;
+  --color-gray-50: #f8f9fb;
+  --color-gray-100: #f1f3f5;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  --color-gray-950: #0b0f19;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-red-400: #f87171;
+  --color-red-500: #ef4444;
+  --color-green-400: #4ade80;
+  --color-green-500: #22c55e;
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+
+  /* semantics (light) */
+  --bg-canvas: var(--color-gray-100);
+  --bg-surface: var(--color-white);
+  --bg-surface-hover: var(--color-gray-50);
+  --border-default: var(--color-gray-200);
+  --border-strong: var(--color-gray-300);
+  --text-primary: var(--color-gray-900);
+  --text-secondary: var(--color-gray-500);
+  --text-on-accent: var(--color-white);
+  --accent-default: var(--color-blue-600);
+  --accent-hover: var(--color-blue-500);
+  --danger-default: var(--color-red-500);
+  --success-default: var(--color-green-500);
+  --warning-default: var(--color-amber-500);
+  --focus-ring: rgba(59, 130, 246, 0.4);
+
+  /* tag chips (bg = color@12%, fg = color) */
+  --tag-blue-bg: rgba(59, 130, 246, 0.12);
+  --tag-blue-fg: var(--color-blue-600);
+  --tag-green-bg: rgba(34, 197, 94, 0.12);
+  --tag-green-fg: #16a34a;
+  --tag-amber-bg: rgba(245, 158, 11, 0.14);
+  --tag-amber-fg: #b45309;
+  --tag-red-bg: rgba(239, 68, 68, 0.12);
+  --tag-red-fg: #dc2626;
+  --tag-gray-bg: rgba(107, 114, 128, 0.12);
+  --tag-gray-fg: var(--color-gray-700);
+}
+
+:root[data-theme="dark"] {
+  --bg-canvas: var(--color-gray-950);
+  --bg-surface: var(--color-gray-900);
+  --bg-surface-hover: var(--color-gray-800);
+  --border-default: var(--color-gray-800);
+  --border-strong: var(--color-gray-700);
+  --text-primary: var(--color-gray-50);
+  --text-secondary: var(--color-gray-400);
+  --text-on-accent: var(--color-white);
+  --accent-default: var(--color-blue-500);
+  --accent-hover: var(--color-blue-400);
+  --danger-default: var(--color-red-400);
+  --success-default: var(--color-green-400);
+  --warning-default: var(--color-amber-400);
+  --focus-ring: rgba(96, 165, 250, 0.45);
+  --tag-blue-bg: rgba(96, 165, 250, 0.18);
+  --tag-blue-fg: var(--color-blue-400);
+  --tag-green-bg: rgba(74, 222, 128, 0.18);
+  --tag-green-fg: var(--color-green-400);
+  --tag-amber-bg: rgba(251, 191, 36, 0.18);
+  --tag-amber-fg: var(--color-amber-400);
+  --tag-red-bg: rgba(248, 113, 113, 0.18);
+  --tag-red-fg: var(--color-red-400);
+  --tag-gray-bg: rgba(156, 163, 175, 0.18);
+  --tag-gray-fg: var(--color-gray-300);
+}

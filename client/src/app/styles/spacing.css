@@ -1,0 +1,28 @@
+:root {
+  --space-0: 0;
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 8px;
+  --space-4: 12px;
+  --space-5: 16px;
+  --space-6: 20px;
+  --space-7: 24px;
+  --space-8: 32px;
+  --space-9: 40px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 999px;
+  --shadow-card: 0 1px 2px rgba(17, 24, 39, 0.06);
+  --shadow-dragged: 0 8px 24px rgba(17, 24, 39, 0.18);
+  --shadow-modal: 0 16px 48px rgba(17, 24, 39, 0.24);
+  --z-base: 0;
+  --z-dragging: 100;
+  --z-dropdown: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+}

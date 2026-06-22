@@ -16,6 +16,7 @@
     "@kanban/server": "workspace:^",
     "@kanban/shared": "workspace:*",
     "@tanstack/react-query": "^5.101.0",
+    "clsx": "^2.1.1",
     "hono": "^4.12.25",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
@@ -24,6 +25,7 @@
     "@biomejs/biome": "2.4.15",
     "@rsbuild/core": "^2.0.14",
     "@rsbuild/plugin-react": "^2.0.1",
+    "@rsbuild/plugin-sass": "^2.0.0",
     "@rstest/adapter-rsbuild": "^0.10.4",
     "@rstest/core": "^0.10.4",
     "@testing-library/dom": "^10.4.1",
