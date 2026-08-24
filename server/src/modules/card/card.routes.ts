@@ -1,6 +1,7 @@
 import { zValidator } from "@hono/zod-validator";
 import { createCardSchema, updateCardSchema } from "@kanban/shared";
 import { Hono } from "hono";
+import { z } from "zod";
 import {
   createCard,
   deleteCard,
@@ -9,10 +10,11 @@ import {
   updateCard,
 } from "./card.service";
 
+const listCardsQuery = z.object({ columnId: z.uuid() });
+
 export const cardRoutes = new Hono()
-  .get("/", async (c) => {
-    const columnId = c.req.query("columnId");
-    if (!columnId) return c.json({ error: "columnId is required" }, 400);
+  .get("/", zValidator("query", listCardsQuery), async (c) => {
+    const { columnId } = c.req.valid("query");
     const cards = await getCards(columnId);
     return c.json(cards);
   })
