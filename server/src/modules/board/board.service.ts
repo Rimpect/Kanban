@@ -1,6 +1,5 @@
-import { prisma } from "../../lib/prisma";
-
 import type { CreateBoardInput, UpdateBoardInput } from "@kanban/shared";
+import { prisma } from "../../lib/prisma";
 
 export const getBoards = () => {
   return prisma.board.findMany();

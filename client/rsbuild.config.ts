@@ -1,7 +1,7 @@
 import { defineConfig } from "@rsbuild/core";
 import { pluginReact } from "@rsbuild/plugin-react";
-import path from "path";
 import { pluginSass } from "@rsbuild/plugin-sass";
+import path from "path";
 // Docs: https://rsbuild.rs/config/
 export default defineConfig({
   plugins: [pluginReact(), pluginSass()],

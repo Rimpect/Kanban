@@ -22,12 +22,13 @@
   --fs-label: 12px;
   --lh-label: 16px;
   --fw-label: 500;
-  --type-display: var(--fw-display) var(--fs-display)/var(--lh-display)
-    var(--font-sans);
-  --type-h1: var(--fw-h1) var(--fs-h1)/var(--lh-h1) var(--font-sans);
-  --type-h2: var(--fw-h2) var(--fs-h2)/var(--lh-h2) var(--font-sans);
-  --type-body: var(--fw-body) var(--fs-body)/var(--lh-body) var(--font-sans);
-  --type-caption: var(--fw-caption) var(--fs-caption)/var(--lh-caption)
-    var(--font-sans);
-  --type-label: var(--fw-label) var(--fs-label)/var(--lh-label) var(--font-sans);
+  --type-display:
+    var(--fw-display) var(--fs-display) / var(--lh-display) var(--font-sans);
+  --type-h1: var(--fw-h1) var(--fs-h1) / var(--lh-h1) var(--font-sans);
+  --type-h2: var(--fw-h2) var(--fs-h2) / var(--lh-h2) var(--font-sans);
+  --type-body: var(--fw-body) var(--fs-body) / var(--lh-body) var(--font-sans);
+  --type-caption:
+    var(--fw-caption) var(--fs-caption) / var(--lh-caption) var(--font-sans);
+  --type-label:
+    var(--fw-label) var(--fs-label) / var(--lh-label) var(--font-sans);
 }

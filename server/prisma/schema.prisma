@@ -24,21 +24,21 @@ model Board{
 
 model Column{
     id String @id @default(uuid())
-    boardId String // Внешний ключ (подсмотрел)       
+    boardId String     
     name    String
     position Float
-    cards   Card[]   // Связь: у колонки много карточек (подсмотрел)
+    cards   Card[]   // Связь: у колонки много карточек
     board   Board  @relation(fields: [boardId], references: [id],onDelete: Cascade)
     @@index([boardId])
 }
 
 model Card {
     id      String       @id @default(uuid())
-    columnId String // Внешний ключ (подсмотрел), поменял на str из за строки ниже что бы типы совпадали
-    column   Column   @relation(fields: [columnId], references: [id], onDelete: Cascade)//(подсмотрел)
+    columnId String
+    column   Column   @relation(fields: [columnId], references: [id], onDelete: Cascade)
     title    String   
     text String
-    position Float   // Порядок карточки в колонке тоже подглядел
+    position Float
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     tags CardTag[]  

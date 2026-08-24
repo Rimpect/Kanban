@@ -1,8 +1,9 @@
+import type { TagColor } from "@kanban/shared";
 import clsx from "clsx";
 import styles from "./tag.module.scss";
-
+export type TagTone = TagColor;
 type Props = {
-  tone?: "blue" | "green" | "amber" | "red" | "gray";
+  tone?: TagTone;
   dot?: boolean;
   children: React.ReactNode;
 } & React.HTMLAttributes<HTMLSpanElement>;

@@ -1,5 +1,5 @@
-import "./App.css";
 import { useBoards } from "@entities";
+
 const App = () => {
   const { data: boards, isLoading, isError } = useBoards();
 

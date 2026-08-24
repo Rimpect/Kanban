@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import "@app/styles/reset.css";
 import "@app/styles/colors.css";
 import "@app/styles/spacing.css";
 import "@app/styles/typography.css";

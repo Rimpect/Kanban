@@ -1,12 +1,12 @@
-import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
 import { createBoardSchema, updateBoardSchema } from "@kanban/shared";
+import { Hono } from "hono";
 import {
-  getBoards,
-  getBoardById,
   createBoard,
-  updateBoard,
   deleteBoard,
+  getBoardById,
+  getBoards,
+  updateBoard,
 } from "./board.service";
 
 export const boardRoutes = new Hono()

@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const columnSchema = z.object({
   id: z.uuid(),
-  boardId: z.string(),
+  boardId: z.uuid(),
   name: z.string().min(3),
   position: z.float64(),
 });

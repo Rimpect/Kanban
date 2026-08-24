@@ -1,0 +1,60 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  cursor: grab;
+  /* Жест перетаскивания забирает себе касание, иначе под пальцем поедет страница */
+  touch-action: none;
+  transition:
+    box-shadow 120ms ease,
+    background 120ms ease,
+    border-color 120ms ease;
+}
+
+.card:hover {
+  background: var(--bg-surface-hover);
+}
+
+/* Карточку фокусирует @dnd-kit (он проставит tabIndex), поэтому кольцо рисуем ей самой */
+.card:focus-visible {
+  outline: 2px solid var(--accent-default);
+  outline-offset: 2px;
+}
+
+.dragging {
+  z-index: var(--z-dragging);
+  background: var(--bg-surface-hover);
+  box-shadow: var(--shadow-dragged);
+  cursor: grabbing;
+}
+
+/* Устойчивое состояние выбора: рамка + мягкое кольцо, --focus-ring остаётся за фокусом */
+.selected {
+  border-color: var(--accent-default);
+  box-shadow:
+    var(--shadow-card),
+    0 0 0 3px var(--accent-subtle);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.title {
+  font: var(--type-body);
+  font-weight: var(--fw-body-strong);
+  color: var(--text-primary);
+  /* Заголовок сам по себе кликабелен; кольцо фокуса приезжает из reset.css */
+  cursor: pointer;
+}
+
+
+
