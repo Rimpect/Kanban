@@ -1,0 +1,46 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  width: 280px;
+  max-height: 100%;
+  background: var(--bg-surface-hover);
+  border-radius: var(--radius-lg);
+  transition: box-shadow 120ms ease;
+}
+
+.dragging {
+  z-index: var(--z-dragging);
+  box-shadow: var(--shadow-dragged);
+}
+
+.title {
+  flex: none;
+  margin: 0;
+  padding: var(--space-4) var(--space-5);
+  font: var(--type-h2);
+  color: var(--text-primary);
+  cursor: grab;
+  /* Хватаем колонку за заголовок; тело со списком карточек должно скроллиться, а не таскаться */
+  touch-action: none;
+}
+
+.dragging .title {
+  cursor: grabbing;
+}
+
+.title:focus-visible {
+  outline: 2px solid var(--accent-default);
+  outline-offset: -2px;
+  border-radius: var(--radius-sm);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: 0 var(--space-5) var(--space-5);
+  overflow-y: auto;
+  /* Без этого flex-контейнер не сожмётся и overflow не сработает */
+  min-height: 0;
+}
