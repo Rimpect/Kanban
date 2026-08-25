@@ -1,3 +1,3 @@
 export { useBoards } from "./board";
-export { Card } from "./card";
-export { Column } from "./column";
+export { Card, useCards } from "./card";
+export { Column, useColumns } from "./column";
