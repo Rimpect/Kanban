@@ -1,5 +1,7 @@
 import { useBoards, useColumns } from "@entities";
-
+import { ColumnWithCards } from "./column-with-cards";
+import { CreateColumnForm } from "@features/create-column";
+import styles from "./board-view.module.scss";
 export function BoardView() {
   const { data: boards, isLoading } = useBoards();
   const board = boards?.[0];
@@ -9,9 +11,14 @@ export function BoardView() {
   if (!board) return <p>Нет досок</p>;
   if (columnsLoading) return <p>Загрузка колонок...</p>;
 
+  const safeColumns = columns ?? [];
+
   return (
-    <div>
-      {board.name}: {columns?.length ?? 0} колонок
+    <div className={styles.board}>
+      {safeColumns.map((col) => (
+        <ColumnWithCards key={col.id} columnId={col.id} name={col.name} />
+      ))}
+      <CreateColumnForm boardId={board.id} columns={safeColumns} />
     </div>
   );
 }
