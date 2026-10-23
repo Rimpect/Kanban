@@ -16,7 +16,12 @@ export function BoardView() {
   return (
     <div className={styles.board}>
       {safeColumns.map((col) => (
-        <ColumnWithCards key={col.id} columnId={col.id} name={col.name} />
+        <ColumnWithCards
+          key={col.id}
+          columnId={col.id}
+          name={col.name}
+          boardId={board.id}
+        />
       ))}
       <CreateColumnForm boardId={board.id} columns={safeColumns} />
     </div>

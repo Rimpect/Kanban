@@ -5,6 +5,7 @@ type Props = {
   name: string;
   children?: React.ReactNode;
   dragging?: boolean;
+  headerSlot?: React.ReactNode;
 } & Omit<React.ComponentProps<"div">, "onClick" | "title">;
 
 export function Column({
@@ -12,6 +13,7 @@ export function Column({
   children,
   dragging = false,
   className,
+  headerSlot,
   ...props
 }: Props) {
   return (
@@ -23,7 +25,10 @@ export function Column({
       )}
       {...props}
     >
-      <h3 className={styles.title}>{name}</h3>
+      <div className={styles.header}>
+        <h3 className={styles.title}>{name}</h3>
+        {headerSlot}
+      </div>
       <div className={styles.body}>{children}</div>
     </div>
   );
