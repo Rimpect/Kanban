@@ -12,7 +12,7 @@ export function CreateColumnForm({ columns, boardId }: Props) {
 
   const { mutate } = useCreateColumn(boardId);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (name.trim().length < 3) {
@@ -23,7 +23,7 @@ export function CreateColumnForm({ columns, boardId }: Props) {
     const nextPosition =
       columns.length > 0 ? columns[columns.length - 1].position + 1 : 1;
 
-    mutate({ name, position: nextPosition });
+    mutate({ name: name.trim(), position: nextPosition });
     setName("");
   };
   return (
