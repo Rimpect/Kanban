@@ -1,6 +1,7 @@
 import { Card, Column, useCards } from "@entities";
 import { DeleteColumnButton } from "@features/delete-column";
 import { CreateCardForm } from "@features/create-card";
+import { DeleteCardButton } from "@features/delete-card";
 
 type Props = { columnId: string; name: string; boardId: string };
 
@@ -17,7 +18,11 @@ export function ColumnWithCards({ columnId, name, boardId }: Props) {
       {isLoading ? (
         <p>Загрузка...</p>
       ) : (
-        cards?.map((card) => <Card key={card.id} title={card.title} />)
+        cards?.map((card) => (
+          <Card key={card.id} title={card.title}>
+            <DeleteCardButton columnId={columnId} cardId={card.id} />
+          </Card>
+        ))
       )}
       <CreateCardForm columnId={columnId} cards={safeCards} />
     </Column>
