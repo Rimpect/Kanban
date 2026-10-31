@@ -1,9 +1,14 @@
-import { Card, Column, useCards } from "@entities";
+import { Column, useCards } from "@entities";
 import { DeleteColumnButton } from "@features/delete-column";
 import { CreateCardForm } from "@features/create-card";
 import { CardDetailsModal } from "@features/edit-card";
 import { useState } from "react";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 
+import { SortableCard } from "./sortable-card";
 type Props = { columnId: string; name: string; boardId: string };
 
 export function ColumnWithCards({ columnId, name, boardId }: Props) {
@@ -12,7 +17,7 @@ export function ColumnWithCards({ columnId, name, boardId }: Props) {
   const safeCards = cards ?? [];
 
   const openCard = cards?.find((c) => c.id === openCardId);
-
+  const items = safeCards.map((card) => card.id);
   return (
     <>
       <Column
@@ -22,17 +27,21 @@ export function ColumnWithCards({ columnId, name, boardId }: Props) {
           <DeleteColumnButton boardId={boardId} columnId={columnId} />
         }
       >
-        {isLoading ? (
-          <p>Загрузка...</p>
-        ) : (
-          cards?.map((card) => (
-            <Card
-              key={card.id}
-              title={card.title}
-              onOpen={() => setOpenCardId(card.id)}
-            ></Card>
-          ))
-        )}
+        <SortableContext items={items} strategy={verticalListSortingStrategy}>
+          {isLoading ? (
+            <p>Загрузка...</p>
+          ) : (
+            safeCards.map((card) => (
+              <SortableCard
+                key={card.id}
+                card={card}
+                columnId={columnId}
+                onOpen={() => setOpenCardId(card.id)}
+              />
+            ))
+          )}
+        </SortableContext>
+
         <CreateCardForm columnId={columnId} cards={safeCards} />
       </Column>
       {openCard && (

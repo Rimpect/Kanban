@@ -3,3 +3,4 @@ export { DeleteColumnButton } from "./delete-column";
 export { CreateCardForm } from "./create-card";
 export { DeleteCardButton } from "./delete-card";
 export { CardDetailsModal } from "./edit-card";
+export { useReorderCard } from "./reorder-card";

@@ -21,9 +21,7 @@
   gap: var(--space-3);
   flex: none;
   padding: var(--space-4) var(--space-5);
-  cursor: grab;
-  /* Хватаем колонку за заголовок; тело со списком карточек должно скроллиться, а не таскаться */
-  touch-action: none;
+
 }
 
 .title {
