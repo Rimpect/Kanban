@@ -11,6 +11,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import styles from "./board-view.module.scss";
 import { arrayMove } from "@dnd-kit/sortable";
 import { useReorderCard } from "@features/reorder-card";
+import { getReorderUpdate } from "../lib/get-reorder-update";
 
 export function BoardView() {
   const { data: boards, isLoading } = useBoards();
@@ -52,36 +53,17 @@ export function BoardView() {
             { id: string; position: number }[]
           >(["cards", columnId]);
 
-          const activeIndex = cachedCards?.findIndex(
-            (card) => card.id === active.id,
-          );
-
-          const overIndex = cachedCards?.findIndex(
-            (card) => card.id === over.id,
-          );
-
           if (!cachedCards) return;
-          if (activeIndex === undefined || activeIndex === -1) return;
-          if (overIndex === undefined || overIndex === -1) return;
 
-          const reordered = arrayMove(cachedCards, activeIndex, overIndex);
-          const before = reordered[overIndex - 1];
-          const after = reordered[overIndex + 1];
-
-          let newPosition: number;
-
-          if (!before) {
-            newPosition = after.position - 1;
-          } else if (!after) {
-            newPosition = before.position + 1;
-          } else {
-            newPosition = (before.position + after.position) / 2;
-          }
-
-          reorderCard({
-            id: cachedCards[activeIndex].id,
-            position: newPosition,
+          const positionUpdate = getReorderUpdate({
+            cachedCards,
+            activeId: String(active.id),
+            overId: String(over.id),
           });
+
+          if (!positionUpdate) return;
+
+          reorderCard(positionUpdate);
         }}
       >
         {safeColumns.map((col) => (
