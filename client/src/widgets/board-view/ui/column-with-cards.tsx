@@ -7,6 +7,7 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { useDroppable } from "@dnd-kit/core";
 
 import { SortableCard } from "./sortable-card";
 type Props = { columnId: string; name: string; boardId: string };
@@ -18,6 +19,8 @@ export function ColumnWithCards({ columnId, name, boardId }: Props) {
 
   const openCard = cards?.find((c) => c.id === openCardId);
   const items = safeCards.map((card) => card.id);
+
+  const { setNodeRef } = useDroppable({ id: columnId, data: { columnId } });
   return (
     <>
       <Column
@@ -26,6 +29,7 @@ export function ColumnWithCards({ columnId, name, boardId }: Props) {
         headerSlot={
           <DeleteColumnButton boardId={boardId} columnId={columnId} />
         }
+        ref={setNodeRef}
       >
         <SortableContext items={items} strategy={verticalListSortingStrategy}>
           {isLoading ? (

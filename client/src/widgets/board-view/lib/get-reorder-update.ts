@@ -5,17 +5,17 @@ export const getReorderUpdate = ({
   activeId,
   overId,
 }: {
-  cachedCards: { id: string; position: number }[] | undefined;
+  cachedCards: { id: string; position: number }[];
   activeId: string;
   overId: string;
 }) => {
-  const activeIndex = cachedCards?.findIndex((card) => card.id === activeId);
 
-  const overIndex = cachedCards?.findIndex((card) => card.id === overId);
+  const activeIndex = cachedCards.findIndex((card) => card.id === activeId);
 
-  if (!cachedCards) return;
-  if (activeIndex === undefined || activeIndex === -1) return;
-  if (overIndex === undefined || overIndex === -1) return;
+  const overIndex = cachedCards.findIndex((card) => card.id === overId);
+
+  if (activeIndex === -1) return;
+  if (overIndex === -1) return;
 
   const reordered = arrayMove(cachedCards, activeIndex, overIndex);
   const before = reordered[overIndex - 1];

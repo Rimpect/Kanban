@@ -5,10 +5,18 @@ export const useReorderCard = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ id, position }: { id: string; position: number }) => {
+    mutationFn: async ({
+      id,
+      position,
+      columnId,
+    }: {
+      id: string;
+      position: number;
+      columnId?: string;
+    }) => {
       const res = await client.cards[":id"].$patch({
         param: { id },
-        json: { position },
+        json: { position, columnId },
       });
       if (!res.ok) throw new Error("Failed to reorder card");
       return res.json();
@@ -20,4 +28,3 @@ export const useReorderCard = () => {
     },
   });
 };
- 
