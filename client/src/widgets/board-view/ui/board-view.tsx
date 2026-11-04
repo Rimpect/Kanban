@@ -6,6 +6,7 @@ import {
   PointerSensor,
   useSensor,
   useSensors,
+  DragOverlay,
 } from "@dnd-kit/core";
 import { useQueryClient } from "@tanstack/react-query";
 import styles from "./board-view.module.scss";
@@ -13,7 +14,8 @@ import { useReorderCard } from "@features/reorder-card";
 import { getReorderUpdate } from "../lib/get-reorder-update";
 import { getMoveToColumnUpdate } from "../lib/get-move-to-column-update";
 import { getAppendToColumnUpdate } from "../lib/get-append-to-column-update";
-
+import { useState } from "react";
+import { Card } from "@entities";
 export function BoardView() {
   const { data: boards, isLoading } = useBoards();
 
@@ -22,6 +24,11 @@ export function BoardView() {
   const { data: columns, isLoading: columnsLoading } = useColumns(board?.id);
 
   const { mutate: reorderCard } = useReorderCard();
+
+  const [activeCard, setActiveCard] = useState<{
+    id: string;
+    title: string;
+  } | null>(null);
 
   const queryClient = useQueryClient();
 
@@ -43,7 +50,25 @@ export function BoardView() {
     <div className={styles.board}>
       <DndContext
         sensors={sensors}
+        onDragStart={({ active }) => {
+          const columnId = active.data.current?.columnId;
+
+          const cachedCards = queryClient.getQueryData<
+            { id: string; title: string }[]
+          >(["cards", columnId]);
+
+          if (!cachedCards) return;
+
+          const findThisCard = cachedCards.find(
+            (card) => card.id === active.id,
+          );
+
+          if (!findThisCard) setActiveCard(null);
+          else setActiveCard(findThisCard);
+        }}
         onDragEnd={({ active, over }) => {
+          setActiveCard(null);
+
           if (!over || active.id === over.id) {
             return;
           }
@@ -114,7 +139,14 @@ export function BoardView() {
             reorderCard(positionUpdate);
           }
         }}
+        onDragCancel={() => {
+          setActiveCard(null);
+        }}
       >
+        <DragOverlay>
+          {activeCard ? <Card title={activeCard.title} dragging /> : null}
+        </DragOverlay>
+
         {safeColumns.map((col) => (
           <ColumnWithCards
             key={col.id}
@@ -123,6 +155,7 @@ export function BoardView() {
             boardId={board.id}
           />
         ))}
+
         <CreateColumnForm boardId={board.id} columns={safeColumns} />
       </DndContext>
     </div>
