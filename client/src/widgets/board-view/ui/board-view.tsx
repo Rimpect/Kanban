@@ -25,6 +25,11 @@ export function BoardView() {
 
   const { mutate: reorderCard } = useReorderCard();
 
+  const [indicator, setIndicator] = useState<{
+    columnId: string;
+    beforeCardId: string | null;
+  } | null>(null);
+
   const [activeCard, setActiveCard] = useState<{
     id: string;
     title: string;
@@ -66,9 +71,26 @@ export function BoardView() {
           if (!findThisCard) setActiveCard(null);
           else setActiveCard(findThisCard);
         }}
+        onDragOver={({ over }) => {
+          setIndicator(null);
+
+          if (!over) return;
+
+          const overColumnId = over.data.current?.columnId;
+          const overIsColumnItself = over.id === overColumnId;
+
+          if (overIsColumnItself) {
+            setIndicator({ columnId: overColumnId, beforeCardId: null });
+          } else {
+            setIndicator({
+              columnId: overColumnId,
+              beforeCardId: String(over.id),
+            });
+          }
+        }}
         onDragEnd={({ active, over }) => {
           setActiveCard(null);
-
+          setIndicator(null);
           if (!over || active.id === over.id) {
             return;
           }
@@ -140,6 +162,7 @@ export function BoardView() {
           }
         }}
         onDragCancel={() => {
+          setIndicator(null);
           setActiveCard(null);
         }}
       >
@@ -153,6 +176,7 @@ export function BoardView() {
             columnId={col.id}
             name={col.name}
             boardId={board.id}
+            indicator={indicator}
           />
         ))}
 

@@ -2,7 +2,7 @@ import { Column, useCards } from "@entities";
 import { DeleteColumnButton } from "@features/delete-column";
 import { CreateCardForm } from "@features/create-card";
 import { CardDetailsModal } from "@features/edit-card";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import {
   SortableContext,
   verticalListSortingStrategy,
@@ -10,15 +10,23 @@ import {
 import { useDroppable } from "@dnd-kit/core";
 
 import { SortableCard } from "./sortable-card";
-type Props = { columnId: string; name: string; boardId: string };
 
-export function ColumnWithCards({ columnId, name, boardId }: Props) {
+import styles from "./column-with-cards.module.scss";
+type Props = {
+  columnId: string;
+  name: string;
+  boardId: string;
+  indicator: { columnId: string; beforeCardId: string | null } | null;
+};
+
+export function ColumnWithCards({ columnId, name, boardId, indicator }: Props) {
   const { data: cards, isLoading } = useCards(columnId);
   const [openCardId, setOpenCardId] = useState<string | null>(null);
   const safeCards = cards ?? [];
 
   const openCard = cards?.find((c) => c.id === openCardId);
   const items = safeCards.map((card) => card.id);
+  const isColumn = indicator?.columnId === columnId;
 
   const { setNodeRef } = useDroppable({ id: columnId, data: { columnId } });
   return (
@@ -36,13 +44,21 @@ export function ColumnWithCards({ columnId, name, boardId }: Props) {
             <p>Загрузка...</p>
           ) : (
             safeCards.map((card) => (
-              <SortableCard
-                key={card.id}
-                card={card}
-                columnId={columnId}
-                onOpen={() => setOpenCardId(card.id)}
-              />
+              <Fragment>
+                {isColumn && indicator.beforeCardId === card.id && (
+                  <div className={styles.dropIndicator} />
+                )}
+                <SortableCard
+                  key={card.id}
+                  card={card}
+                  columnId={columnId}
+                  onOpen={() => setOpenCardId(card.id)}
+                />
+              </Fragment>
             ))
+          )}
+          {isColumn && indicator?.beforeCardId === null && (
+            <div className={styles.dropIndicator} />
           )}
         </SortableContext>
 
