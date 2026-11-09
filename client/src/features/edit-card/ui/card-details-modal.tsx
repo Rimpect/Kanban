@@ -1,11 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { useUpdateCard } from "../api/useUpdateCard";
+import { useTags } from "@entities";
 import { DeleteCardButton } from "@features/delete-card";
+import { Tag } from "@shared/ui";
+import clsx from "clsx";
 import styles from "./card-details-modal.module.scss";
 
 type Props = {
   columnId: string;
-  card: { id: string; title: string; text: string };
+  card: {
+    id: string;
+    title: string;
+    text: string;
+    tags: { id: string; name: string; color: string }[];
+  };
   onClose: () => void;
 };
 
@@ -13,6 +21,7 @@ export function CardDetailsModal({ columnId, card, onClose }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [text, setText] = useState(card.text);
   const { mutate: updateCard } = useUpdateCard(columnId, card.id);
+  const { data: tags } = useTags();
 
   useEffect(() => {
     dialogRef.current?.showModal();
@@ -23,10 +32,39 @@ export function CardDetailsModal({ columnId, card, onClose }: Props) {
     dialogRef.current?.close();
   };
 
+  const toggleTag = (tagId: string) => {
+    const currentIds = card.tags.map((tag) => tag.id);
+    let newIds;
+    if (currentIds.find((id) => id === tagId)) {
+      newIds = currentIds.filter((id) => id !== tagId);
+    } else {
+      newIds = [...currentIds, tagId];
+    }
+    updateCard({ tagIds: newIds });
+  };
+  const safeTags = tags ?? [];
+
   return (
     <dialog ref={dialogRef} onClose={onClose} className={styles.dialog}>
       <h3>{card.title}</h3>
       <textarea value={text} onChange={(e) => setText(e.target.value)} />
+      <div className={styles.tagList}>
+        {safeTags.map((tag) => {
+          const isAssigned = card.tags.find((t) => t.id === tag.id);
+          return (
+            <button
+              key={tag.id}
+              type="button"
+              onClick={() => toggleTag(tag.id)}
+              className={clsx(styles.tagButton, {
+                [styles.unassigned]: !isAssigned,
+              })}
+            >
+              <Tag tone={tag.color ?? undefined}>{tag.name}</Tag>
+            </button>
+          );
+        })}
+      </div>
       <footer>
         <DeleteCardButton
           columnId={columnId}

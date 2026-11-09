@@ -1,9 +1,10 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Card } from "@entities";
+import type { Tag } from "@kanban/shared";
 
 type Props = {
-  card: { id: string; title: string };
+  card: { id: string; title: string; tags: Tag[] };
   columnId: string;
   onOpen: () => void;
 };
@@ -23,6 +24,7 @@ export function SortableCard({ card, onOpen, columnId }: Props) {
       style={style}
       title={card.title}
       onOpen={onOpen}
+      tags={card.tags}
       {...attributes}
       {...listeners}
     />
