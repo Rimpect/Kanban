@@ -8,9 +8,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { useDroppable } from "@dnd-kit/core";
-
 import { SortableCard } from "./sortable-card";
-
 import styles from "./column-with-cards.module.scss";
 type Props = {
   columnId: string;
@@ -44,12 +42,11 @@ export function ColumnWithCards({ columnId, name, boardId, indicator }: Props) {
             <p>Загрузка...</p>
           ) : (
             safeCards.map((card) => (
-              <Fragment>
+              <Fragment key={card.id}>
                 {isColumn && indicator.beforeCardId === card.id && (
                   <div className={styles.dropIndicator} />
                 )}
                 <SortableCard
-                  key={card.id}
                   card={card}
                   columnId={columnId}
                   onOpen={() => setOpenCardId(card.id)}

@@ -3,17 +3,15 @@ import { useUpdateCard } from "../api/useUpdateCard";
 import { useTags } from "@entities";
 import { DeleteCardButton } from "@features/delete-card";
 import { Tag } from "@shared/ui";
+import type { Tag as TagModel } from "@kanban/shared";
+
 import clsx from "clsx";
 import styles from "./card-details-modal.module.scss";
 
 type Props = {
   columnId: string;
-  card: {
-    id: string;
-    title: string;
-    text: string;
-    tags: { id: string; name: string; color: string }[];
-  };
+  card: { id: string; title: string; text: string; tags: TagModel[] };
+
   onClose: () => void;
 };
 

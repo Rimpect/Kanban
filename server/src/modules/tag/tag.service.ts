@@ -1,4 +1,5 @@
 import type { CreateTagInput, Tag, UpdateTagInput } from "@kanban/shared";
+
 import { prisma } from "../../lib/prisma";
 
 export const getTags = async () => {

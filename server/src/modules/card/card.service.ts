@@ -1,4 +1,4 @@
-import type { CreateCardInput, UpdateCardInput } from "@kanban/shared";
+import type { Card, CreateCardInput, UpdateCardInput } from "@kanban/shared";
 import { prisma } from "../../lib/prisma";
 
 export const getCards = async (columnId: string) => {
@@ -10,7 +10,7 @@ export const getCards = async (columnId: string) => {
   return cards.map((card) => ({
     ...card,
     tags: card.tags.map((cardTag) => cardTag.tag),
-  }));
+  })) as Card[];
 };
 
 export const getCardById = async (id: string) => {
@@ -18,7 +18,11 @@ export const getCardById = async (id: string) => {
     where: { id },
     include: { tags: { include: { tag: true } } },
   });
-  if (card) return { ...card, tags: card.tags.map((cardTag) => cardTag.tag) };
+  if (card)
+    return {
+      ...card,
+      tags: card.tags.map((cardTag) => cardTag.tag),
+    } as Card | null;
 };
 
 export const createCard = async ({ tagIds, ...data }: CreateCardInput) => {
@@ -29,7 +33,10 @@ export const createCard = async ({ tagIds, ...data }: CreateCardInput) => {
     },
     include: { tags: { include: { tag: true } } },
   });
-  return { ...card, tags: card.tags.map((cardTag) => cardTag.tag) };
+  return {
+    ...card,
+    tags: card.tags.map((cardTag) => cardTag.tag),
+  } as Card;
 };
 
 export const updateCard = async (
@@ -46,7 +53,7 @@ export const updateCard = async (
     },
     include: { tags: { include: { tag: true } } },
   });
-  return { ...card, tags: card.tags.map((cardTag) => cardTag.tag) };
+  return { ...card, tags: card.tags.map((cardTag) => cardTag.tag) } as Card;
 };
 
 export const deleteCard = (id: string) => {
