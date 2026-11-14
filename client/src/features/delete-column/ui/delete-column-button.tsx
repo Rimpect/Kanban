@@ -1,4 +1,5 @@
 import { useDeleteColumn } from "../api/useDeleteColumn";
+import styles from "./delete-column-button.module.scss";
 
 type Props = {
   boardId: string;
@@ -10,6 +11,7 @@ export function DeleteColumnButton({ boardId, columnId }: Props) {
   return (
     <button
       type="button"
+      className={styles.button}
       onClick={() => {
         if (confirm("Удалить колонку?")) {
           mutate(columnId);

@@ -1,0 +1,50 @@
+@use "../../../shared/styles/controls" as *;
+
+.trigger {
+  @include button-base;
+  width: 280px;
+  height: 44px;
+  padding: 0 var(--space-5);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: transparent;
+  color: var(--text-secondary);
+  font: var(--type-body);
+  text-align: left;
+
+  &:hover {
+    background: var(--bg-surface-hover);
+    color: var(--text-primary);
+  }
+}
+
+.form {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 280px;
+  padding: var(--space-4);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+}
+
+.input {
+  @include field;
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.submit {
+  @include button-primary;
+  padding: 0 var(--space-4);
+}
+
+.cancel {
+  @include button-secondary;
+  padding: 0 var(--space-4);
+}

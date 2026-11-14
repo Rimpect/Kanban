@@ -1,3 +1,5 @@
+@use "../../../shared/styles/controls" as *;
+
 .form {
   display: flex;
   gap: var(--space-3);
@@ -6,13 +8,7 @@
 
 .input,
 .select {
-  height: 32px;
-  padding: 0 var(--space-3);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-sm);
-  background: var(--bg-surface);
-  color: var(--text-primary);
-  font: var(--type-body);
+  @include field;
 }
 
 .input {
@@ -20,25 +16,6 @@
   min-width: 0;
 }
 
-.input:focus-visible,
-.select:focus-visible,
-.submit:focus-visible {
-  outline: 2px solid var(--focus-ring);
-  outline-offset: 1px;
-}
-
 .submit {
-  flex: none;
-  height: 32px;
-  padding: 0 var(--space-4);
-  border: none;
-  border-radius: var(--radius-sm);
-  background: var(--accent-default);
-  color: var(--text-on-accent);
-  font: var(--type-body);
-  cursor: pointer;
-}
-
-.submit:hover {
-  background: var(--accent-hover);
+  @include button-primary;
 }

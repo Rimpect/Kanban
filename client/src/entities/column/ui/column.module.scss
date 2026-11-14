@@ -5,6 +5,7 @@
   width: 280px;
   max-height: 100%;
   background: var(--bg-surface-hover);
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
   transition: box-shadow 120ms ease;
 }
@@ -26,7 +27,7 @@
 
 .title {
   margin: 0;
-  font: var(--type-h2);
+  font: var(--fw-body-strong) var(--fs-body) / var(--lh-body) var(--font-sans);
   color: var(--text-primary);
 }
 

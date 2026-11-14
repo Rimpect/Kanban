@@ -49,8 +49,12 @@ export function CardDetailsModal({
 
   return (
     <dialog ref={dialogRef} onClose={onClose} className={styles.dialog}>
-      <h3>{card.title}</h3>
-      <textarea value={text} onChange={(e) => setText(e.target.value)} />
+      <h3 className={styles.title}>{card.title}</h3>
+      <textarea
+        className={styles.textarea}
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
       <div className={styles.tagList}>
         {safeTags.map((tag) => {
           const isAssigned = card.tags.find((t) => t.id === tag.id);
@@ -68,19 +72,23 @@ export function CardDetailsModal({
           );
         })}
       </div>
-      <footer>
+      {tagFormSlot}
+      <footer className={styles.footer}>
         <DeleteCardButton
           columnId={columnId}
           cardId={card.id}
           onDeleted={() => dialogRef.current?.close()}
         />
-        <button type="button" onClick={() => dialogRef.current?.close()}>
+        <button
+          type="button"
+          className={styles.cancel}
+          onClick={() => dialogRef.current?.close()}
+        >
           Отмена
         </button>
-        <button type="button" onClick={handleSave}>
+        <button type="button" className={styles.save} onClick={handleSave}>
           Сохранить
         </button>
-        {tagFormSlot}
       </footer>
     </dialog>
   );

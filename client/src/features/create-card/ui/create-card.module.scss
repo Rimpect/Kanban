@@ -1,0 +1,43 @@
+@use "../../../shared/styles/controls" as *;
+
+.trigger {
+  @include button-base;
+  width: 100%;
+  padding: 0 var(--space-3);
+  background: transparent;
+  color: var(--text-secondary);
+  font: var(--type-body);
+  text-align: left;
+
+  &:hover {
+    background: var(--border-default);
+    color: var(--text-primary);
+  }
+}
+
+.form {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.input {
+  @include field;
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.submit {
+  @include button-primary;
+  padding: 0 var(--space-4);
+}
+
+.cancel {
+  @include button-secondary;
+  padding: 0 var(--space-4);
+}

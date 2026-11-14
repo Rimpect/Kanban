@@ -1,0 +1,5 @@
+@use "../../../shared/styles/controls" as *;
+
+.button {
+  @include button-danger;
+}

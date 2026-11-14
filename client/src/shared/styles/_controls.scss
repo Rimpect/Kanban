@@ -1,0 +1,72 @@
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 1px;
+  }
+}
+
+@mixin field {
+  height: 36px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font: var(--type-body);
+  @include focus-ring;
+}
+
+@mixin button-base {
+  flex: none;
+  height: 36px;
+  padding: 0 var(--space-5);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font: var(--fw-body-strong) var(--fs-body) / var(--lh-body) var(--font-sans);
+  cursor: pointer;
+  @include focus-ring;
+}
+
+@mixin button-primary {
+  @include button-base;
+  background: var(--accent-default);
+  color: var(--text-on-accent);
+
+  &:hover {
+    background: var(--accent-hover);
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  border-color: var(--border-strong);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+
+  &:hover {
+    background: var(--bg-surface-hover);
+  }
+}
+
+@mixin button-danger {
+  @include button-base;
+  background: var(--danger-default);
+  color: var(--text-on-accent);
+
+  &:hover {
+    filter: brightness(0.93);
+  }
+}
+
+@mixin button-ghost-danger {
+  @include button-base;
+  height: 28px;
+  padding: 0 var(--space-3);
+  font: var(--type-body);
+  background: transparent;
+  color: var(--text-secondary);
+
+  &:hover {
+    color: var(--danger-default);
+  }
+}

@@ -1,4 +1,5 @@
 import { useDeleteCard } from "../api/useDeleteCard";
+import styles from "./delete-card-button.module.scss";
 
 type Props = {
   cardId: string;
@@ -11,6 +12,7 @@ export function DeleteCardButton({ columnId, cardId, onDeleted }: Props) {
   return (
     <button
       type="button"
+      className={styles.button}
       onClick={() => {
         if (confirm("Удалить карточку?")) {
           mutate(cardId);

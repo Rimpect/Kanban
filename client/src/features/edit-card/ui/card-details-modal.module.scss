@@ -1,6 +1,8 @@
+@use "../../../shared/styles/controls" as *;
+
 .dialog {
   margin: auto;
-  width: min(480px, calc(100vw - var(--space-6) * 2));
+  width: min(560px, calc(100vw - var(--space-6) * 2));
   padding: var(--space-6);
   border: none;
   border-radius: var(--radius-lg);
@@ -40,4 +42,43 @@
 
 .unassigned:hover {
   opacity: 0.75;
+}
+
+.title {
+  margin: 0 0 var(--space-4);
+  font: var(--type-h2);
+}
+
+.textarea {
+  @include field;
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 96px;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  resize: vertical;
+}
+
+/* Отрицательные поля растягивают линию подвала на всю ширину модалки */
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin: var(--space-6) calc(var(--space-6) * -1) 0;
+  padding: var(--space-5) var(--space-6) 0;
+  border-top: 1px solid var(--border-default);
+}
+
+/* Кнопка удаления идёт первой и прижимается влево, остальные остаются справа */
+.footer > :first-child {
+  margin-right: auto;
+}
+
+.cancel {
+  @include button-secondary;
+}
+
+.save {
+  @include button-primary;
 }
