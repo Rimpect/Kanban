@@ -13,6 +13,7 @@ type Props = {
   card: { id: string; title: string; text: string; tags: TagModel[] };
   onClose: () => void;
   tagFormSlot?: React.ReactNode;
+  renderTagActions?: (tag: TagModel) => React.ReactNode;
 };
 
 export function CardDetailsModal({
@@ -20,6 +21,7 @@ export function CardDetailsModal({
   card,
   onClose,
   tagFormSlot,
+  renderTagActions,
 }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [text, setText] = useState(card.text);
@@ -66,16 +68,18 @@ export function CardDetailsModal({
           {safeTags.map((tag) => {
             const isAssigned = card.tags.find((t) => t.id === tag.id);
             return (
-              <button
-                key={tag.id}
-                type="button"
-                onClick={() => toggleTag(tag.id)}
-                className={clsx(styles.tagButton, {
-                  [styles.unassigned]: !isAssigned,
-                })}
-              >
-                <Tag tone={tag.color ?? undefined}>{tag.name}</Tag>
-              </button>
+              <span key={tag.id} className={styles.tagItem}>
+                <button
+                  type="button"
+                  onClick={() => toggleTag(tag.id)}
+                  className={clsx(styles.tagButton, {
+                    [styles.unassigned]: !isAssigned,
+                  })}
+                >
+                  <Tag tone={tag.color ?? undefined}>{tag.name}</Tag>
+                </button>
+                {renderTagActions?.(tag)}
+              </span>
             );
           })}
         </div>

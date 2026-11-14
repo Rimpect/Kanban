@@ -1,0 +1,17 @@
+@use "../../../shared/styles/controls" as *;
+
+.button {
+  @include button-base;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1;
+
+  &:hover {
+    background: var(--bg-surface-hover);
+    color: var(--danger-default);
+  }
+}

@@ -22,7 +22,14 @@
   margin-bottom: var(--space-4);
 }
 
+.tagItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
 .tagButton {
+  display: inline-flex;
   padding: 0;
   border: none;
   background: none;
