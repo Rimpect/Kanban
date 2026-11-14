@@ -11,11 +11,16 @@ import styles from "./card-details-modal.module.scss";
 type Props = {
   columnId: string;
   card: { id: string; title: string; text: string; tags: TagModel[] };
-
   onClose: () => void;
+  tagFormSlot?: React.ReactNode;
 };
 
-export function CardDetailsModal({ columnId, card, onClose }: Props) {
+export function CardDetailsModal({
+  columnId,
+  card,
+  onClose,
+  tagFormSlot,
+}: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [text, setText] = useState(card.text);
   const { mutate: updateCard } = useUpdateCard(columnId, card.id);
@@ -75,6 +80,7 @@ export function CardDetailsModal({ columnId, card, onClose }: Props) {
         <button type="button" onClick={handleSave}>
           Сохранить
         </button>
+        {tagFormSlot}
       </footer>
     </dialog>
   );

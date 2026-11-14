@@ -16,6 +16,7 @@ import { getMoveToColumnUpdate } from "../lib/get-move-to-column-update";
 import { getAppendToColumnUpdate } from "../lib/get-append-to-column-update";
 import { useState } from "react";
 import { Card } from "@entities";
+
 export function BoardView() {
   const { data: boards, isLoading } = useBoards();
 
@@ -179,7 +180,6 @@ export function BoardView() {
             indicator={indicator}
           />
         ))}
-
         <CreateColumnForm boardId={board.id} columns={safeColumns} />
       </DndContext>
     </div>

@@ -9,6 +9,7 @@ import {
 } from "@dnd-kit/sortable";
 import { useDroppable } from "@dnd-kit/core";
 import { SortableCard } from "./sortable-card";
+import { CreateTagForm } from "@features/create-tag";
 import styles from "./column-with-cards.module.scss";
 type Props = {
   columnId: string;
@@ -66,6 +67,7 @@ export function ColumnWithCards({ columnId, name, boardId, indicator }: Props) {
           columnId={columnId}
           card={openCard}
           onClose={() => setOpenCardId(null)}
+          tagFormSlot={<CreateTagForm />}
         />
       )}
     </>
