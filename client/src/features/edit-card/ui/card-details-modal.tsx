@@ -49,30 +49,47 @@ export function CardDetailsModal({
 
   return (
     <dialog ref={dialogRef} onClose={onClose} className={styles.dialog}>
-      <h3 className={styles.title}>{card.title}</h3>
-      <textarea
-        className={styles.textarea}
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      />
-      <div className={styles.tagList}>
-        {safeTags.map((tag) => {
-          const isAssigned = card.tags.find((t) => t.id === tag.id);
-          return (
-            <button
-              key={tag.id}
-              type="button"
-              onClick={() => toggleTag(tag.id)}
-              className={clsx(styles.tagButton, {
-                [styles.unassigned]: !isAssigned,
-              })}
-            >
-              <Tag tone={tag.color ?? undefined}>{tag.name}</Tag>
-            </button>
-          );
-        })}
+      <header className={styles.header}>
+        <h3 className={styles.title}>{card.title}</h3>
+        <button
+          aria-label="Закрыть"
+          type="button"
+          className={styles.close}
+          onClick={() => dialogRef.current?.close()}
+        >
+          ×
+        </button>
+      </header>
+      <div className={styles.section}>
+        <span className={styles.label}>Метки</span>
+        <div className={styles.tagList}>
+          {safeTags.map((tag) => {
+            const isAssigned = card.tags.find((t) => t.id === tag.id);
+            return (
+              <button
+                key={tag.id}
+                type="button"
+                onClick={() => toggleTag(tag.id)}
+                className={clsx(styles.tagButton, {
+                  [styles.unassigned]: !isAssigned,
+                })}
+              >
+                <Tag tone={tag.color ?? undefined}>{tag.name}</Tag>
+              </button>
+            );
+          })}
+        </div>
+        {tagFormSlot}
       </div>
-      {tagFormSlot}
+      <label className={styles.section}>
+        <span className={styles.label}>Описание</span>
+        <textarea
+          className={styles.textarea}
+          value={text}
+          placeholder="Добавьте описание..."
+          onChange={(e) => setText(e.target.value)}
+        />
+      </label>
       <footer className={styles.footer}>
         <DeleteCardButton
           columnId={columnId}
