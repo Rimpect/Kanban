@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
+import { Toaster } from "sonner";
 import { useUpdateCard } from "../api/useUpdateCard";
 import { useTags } from "@entities";
 import { DeleteCardButton } from "@features/delete-card";
 import { Tag } from "@shared/ui";
 import type { Tag as TagModel } from "@kanban/shared";
-
 import clsx from "clsx";
 import styles from "./card-details-modal.module.scss";
 
@@ -111,6 +111,7 @@ export function CardDetailsModal({
           Сохранить
         </button>
       </footer>
+            <Toaster />
     </dialog>
   );
 }

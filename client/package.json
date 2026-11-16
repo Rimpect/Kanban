@@ -22,7 +22,8 @@
     "clsx": "^2.1.1",
     "hono": "^4.12.25",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "sonner": "^2.0.8"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.15",
