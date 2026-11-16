@@ -1,0 +1,57 @@
+@use "../../../shared/styles/controls" as *;
+
+/* Кнопка-карандаш: того же размера, что и крестик удаления тега */
+.trigger {
+  @include button-base;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1;
+
+  &:hover {
+    background: var(--bg-surface-hover);
+    color: var(--text-primary);
+  }
+}
+
+/* Форма занимает всё свободное место в строке тега.
+   Первый ряд: имя и цвет, второй ряд: кнопки */
+.form {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.input,
+.select {
+  @include field;
+  height: 28px;
+}
+
+.input {
+  flex: 1;
+  min-width: 120px;
+}
+
+/* Всегда отдельным рядом, а не «как получится» при переносе */
+.actions {
+  display: flex;
+  flex-basis: 100%;
+  gap: var(--space-2);
+}
+
+.submit {
+  @include button-primary;
+  height: 28px;
+}
+
+.cancel {
+  @include button-secondary;
+  height: 28px;
+}
