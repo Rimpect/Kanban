@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useCreateTag } from "../api/useCreateTag";
 import type { TagColor } from "@kanban/shared";
+import { toast } from "sonner";
 import styles from "./create-tag.module.scss";
 
 export function CreateTagForm() {
@@ -11,7 +12,7 @@ export function CreateTagForm() {
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (title.trim().length < 3) {
-      alert("Должно быть больше 2х символов!");
+      toast("Должно быть больше 2х символов!");
       return;
     }
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useCreateCard } from "../api/useCreateCard";
+import { toast } from "sonner";
 import styles from "./create-card.module.scss";
 type Props = {
   cards: { position: number }[];
@@ -15,7 +16,7 @@ export function CreateCardForm({ cards, columnId }: Props) {
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (title.trim().length < 3) {
-      alert("Должно быть больше 2х символов!");
+      toast.error("Должно быть больше 2х символов!");
       return;
     }
 

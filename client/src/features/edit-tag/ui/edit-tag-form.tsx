@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useUpdateTag } from "../api/useUpdateTag";
 import type { TagColor, Tag as TagModel } from "@kanban/shared";
+import { toast } from "sonner";
 import styles from "./edit-tag-form.module.scss";
 type Props = {
   tag: TagModel;
@@ -15,7 +16,7 @@ export function EditTagForm({ tag }: Props) {
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (name.trim().length < 3) {
-      alert("Должно быть больше 2х символов!");
+      toast("Должно быть больше 2х символов!");
       return;
     }
 

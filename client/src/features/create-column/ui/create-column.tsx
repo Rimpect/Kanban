@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Column } from "@kanban/shared";
 import { useCreateColumn } from "../api/useCreateColumn";
+import { toast } from "sonner";
 import styles from "./create-column.module.scss";
 
 type Props = {
@@ -18,7 +19,7 @@ export function CreateColumnForm({ columns, boardId }: Props) {
     e.preventDefault();
 
     if (name.trim().length < 3) {
-      alert("Должно быть больше 2х символов!");
+      toast("Должно быть больше 2х символов!");
       return;
     }
 
