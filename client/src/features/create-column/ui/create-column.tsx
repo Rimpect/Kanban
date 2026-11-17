@@ -19,7 +19,7 @@ export function CreateColumnForm({ columns, boardId }: Props) {
     e.preventDefault();
 
     if (name.trim().length < 3) {
-      toast("Должно быть больше 2х символов!");
+      toast.error("Должно быть больше 2х символов!");
       return;
     }
 

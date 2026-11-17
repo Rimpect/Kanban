@@ -25,6 +25,12 @@
   font: var(--fw-body-strong) var(--fs-body) / var(--lh-body) var(--font-sans);
   cursor: pointer;
   @include focus-ring;
+
+  /* pointer-events отключает и hover-стили вариантов кнопок */
+  &:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
 }
 
 @mixin button-primary {
